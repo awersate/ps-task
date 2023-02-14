@@ -20,7 +20,7 @@ data "template_file" "user_data" {
 
               # Установка Ansible
               sudo yum install -y epel-release
-              sudo yum install -y ansible
+              sudo yum install -y ansible wget
 
               # Скачивание архива с ролями
               wget ${var.path_to_playbook_archive} 
