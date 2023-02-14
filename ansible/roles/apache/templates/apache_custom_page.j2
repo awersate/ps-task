@@ -1,0 +1,6 @@
+<virtualhost *:{{ port_web }}>
+  DocumentRoot {{ page_dir }}
+  <Directory {{ page_dir }}>
+    Require all granted
+  </Directory>
+</virtualhost>

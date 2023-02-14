@@ -1,0 +1,13 @@
+- hosts: apache
+  become: true
+  vars:
+    port_web: 80
+  roles:
+   - apache
+
+- hosts: haproxy
+  become: true
+  vars:
+    port_web: 80
+  roles:
+   - haproxy

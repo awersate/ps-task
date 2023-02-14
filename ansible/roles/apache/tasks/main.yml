@@ -1,0 +1,27 @@
+---
+- name: Httpd installed
+  ansible.builtin.yum:
+    name: httpd
+    state: latest
+
+- name: Httpd service enabled
+  ansible.builtin.service:
+    name: httpd
+    enabled: true
+    state: started
+
+- name: Creating Document root
+  file:
+    state: directory
+    dest: "{{ page_dir }}"
+
+- name: Copy webpages
+  copy:
+    content: "<h1> Welcome to {{ ansible_hostname }}  with ip {{ ansible_default_ipv4.address }}</h1>"
+    dest: "{{ page_dir }}/index.html"
+
+- name: Configuration File
+  template:
+    src: "./apache_custom_page.j2"
+    dest: "/etc/httpd/conf.d/apache_custom_page.conf"
+  notify: Restart apache server
